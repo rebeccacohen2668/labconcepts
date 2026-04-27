@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BookOpen, CheckCircle, XCircle, ArrowLeft, RotateCcw, Award, Lightbulb, Trophy, Star, BrainCircuit } from 'lucide-react';
 
 const scenarios = [
@@ -93,7 +93,7 @@ const scenarios = [
           "איך ריכוז הגלוקוז השונה משפיע על השמרים?",
           "מהי השפעת ריכוז הגלוקוז על קצב הנשימה התאית?",
           "למה שמרים צריכים גלוקוז כדי לבצע נשימה תאית?",
-          "האם שמרים יפלטו יותר גז בריכוז גלוקוז של 6%?"
+          "האם שמרים יפלטו יותר גז בריכוז הגלוקוז של 6%?"
         ],
         correct: 1,
         explanation: "שאלת חקר טובה כוללת את המשתנה הבלתי תלוי (ריכוז גלוקוז) והמשתנה התלוי (קצב נשימה תאית), ושואלת על הקשר ביניהם. היא לא מתחילה ב'איך' או 'למה'."
@@ -189,7 +189,7 @@ const scenarios = [
   },
   {
     id: 5,
-    title: "ניסוי 5: פירוק מי חמצן על ידי האנזים קטלאז",
+    title: "ניסוי 5: פירוק מי חמצן על ידי קטלאז",
     illustration: "🥔🧪",
     colors: {
       border: "border-blue-500",
@@ -198,8 +198,8 @@ const scenarios = [
       bgIcon: "bg-blue-100",
       hover: "hover:border-blue-400 hover:bg-blue-50 hover:shadow-blue-200"
     },
-    studyMaterial: "סיכום משתנים בניסוי מעבדה: לעולם אל תרשמו כאובייקט רק 'אנזים' או 'צמח'. המשתנה הוא הריכוז שלו, הכמות שלו או הטמפרטורה שלו. למשל: 'ריכוז מיצוי תפוח אדמה' ולא סתם 'תפוח אדמה'. כמו כן, המשתנה התלוי הוא תמיד תהליך ('קצב פעילות האנזים') ולא רק כלי המדידה ('סרגל' או 'גובה קצף').",
-    description: "תלמידים רצו לבדוק את השפעת ריכוז האנזים קטלאז (הנמצא במיצוי תפוח אדמה) על קצב פירוק מי חמצן. הם הכינו מערכות עם ריכוזים שונים של מיצוי תפוח אדמה (10%, 20%, 30%, 40%, 50%), בעוד כמות מי החמצן נשמרה קבועה. לאחר 5 דקות, נמדד גובה הקצף שנוצר במבחנה כתוצאה מפליטת גז החמצן.",
+    studyMaterial: "סיכום משתנים: לעולם אל תרשמו כאובייקט רק 'אנזים' או 'צמח'. המשתנה הוא הריכוז שלו, הכמות שלו וכו'. המשתנה התלוי הוא תמיד תהליך ('קצב פעילות האנזים') ולא רק כלי המדידה ('סרגל' או 'גובה קצף').",
+    description: "תלמידים רצו לבדוק את השפעת ריכוז האנזים קטלאז (ממיצוי תפוח אדמה) על קצב פירוק מי חמצן. הם הכינו מערכות עם ריכוזים שונים של מיצוי (10%, 20%, 30%, 40%, 50%), בעוד כמות מי החמצן נשמרה קבועה. לאחר 5 דקות, נמדד גובה הקצף שנוצר במבחנה כתוצאה מפליטת גז החמצן.",
     questions: [
       {
         question: "מהו המשתנה הבלתי תלוי (הגורם המשפיע) בניסוי זה?",
@@ -238,7 +238,7 @@ const scenarios = [
   },
   {
     id: 6,
-    title: "ניסוי 6: ניתוח תוצאות - קטלאז המשך",
+    title: "ניסוי 6: ניתוח תוצאות - קטלאז",
     illustration: "📈🔬",
     colors: {
       border: "border-pink-500",
@@ -247,48 +247,48 @@ const scenarios = [
       bgIcon: "bg-pink-100",
       hover: "hover:border-pink-400 hover:bg-pink-50 hover:shadow-pink-200"
     },
-    studyMaterial: "יש להבחין בבירור בין שלושה מושגים בניתוח ניסוי: 1. תיאור התוצאות: תיאור מילולי ויבש של מה שרואים בגרף (מגמות עליה/ירידה ונקודות קיצון) ללא פרשנות. 2. הסבר / בסיס ביולוגי: ההיגיון המדעי שעומד מאחורי התוצאות (למשל, 'יותר אנזים פירושו יותר התנגשויות עם הסובסטרט'). 3. מסקנה: שורת המחץ שמסכמת מה למדנו (הקשר הכללי בין המשתנים, כגון 'ככל שהריכוז עולה כך הקצב עולה, עד לנקודת רוויה').",
-    description: "חוקרים המשיכו את הניסוי של פירוק מי חמצן על ידי מיצוי תפוח אדמה, והרחיבו את טווח הריכוזים עד ל-100%. הם שרטטו גרף המראה את הקשר בין ריכוז המיצוי (בציר ה-X) לבין גובה הקצף (בציר ה-Y). התבוננו היטב בגרף שלפניכם וענו על השאלות.",
+    studyMaterial: "יש להבחין בבירור בין 3 מושגים: 1. תיאור התוצאות: תיאור יבש של מגמות העקומה (ללא פרשנות). 2. הסבר (בסיס ביולוגי): ההיגיון המדעי מאחורי התוצאות ('מצב רוויה של אנזים'). 3. מסקנה: שורת המחץ שמסכמת את הקשר הכללי שנלמד מהניסוי.",
+    description: "חוקרים המשיכו את ניסוי הקטלאז והרחיבו את טווח הריכוזים עד ל-100%. שרטטו גרף המראה את הקשר בין ריכוז המיצוי לגובה הקצף. התבוננו היטב בגרף וענו על השאלות.",
     extraContent: () => (
-      <div className="my-6 bg-slate-50 p-6 border border-slate-200 rounded-xl shadow-inner overflow-hidden">
-        <h4 className="text-center font-bold text-slate-800 mb-4 text-xl">השפעת ריכוז מיצוי תפוח אדמה על ממוצע גובה הקצף</h4>
+      <div className="my-2 sm:my-3 bg-slate-50 p-2 sm:p-3 border border-slate-200 rounded-lg shadow-inner overflow-hidden max-w-full">
+        <h4 className="text-center font-bold text-slate-800 mb-1 sm:mb-2 text-sm sm:text-base px-1">השפעת ריכוז מיצוי תפוח אדמה על גובה הקצף</h4>
         <div className="w-full overflow-x-auto flex justify-center">
-          <svg viewBox="0 0 450 220" className="w-full max-w-lg h-auto">
+          <svg viewBox="0 0 450 200" className="w-full h-auto min-w-[260px] max-w-sm">
              {/* Axes */}
-             <line x1="60" y1="170" x2="420" y2="170" stroke="#64748b" strokeWidth="2"/>
-             <line x1="60" y1="20" x2="60" y2="170" stroke="#64748b" strokeWidth="2"/>
+             <line x1="60" y1="160" x2="420" y2="160" stroke="#64748b" strokeWidth="2"/>
+             <line x1="60" y1="20" x2="60" y2="160" stroke="#64748b" strokeWidth="2"/>
              
              {/* Grid lines */}
              {[2,4,6,8,10].map(y => (
-               <line key={y} x1="55" y1={170 - (y*14)} x2="420" y2={170 - (y*14)} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4"/>
+               <line key={y} x1="55" y1={160 - (y*13)} x2="420" y2={160 - (y*13)} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4"/>
              ))}
              
              {/* Line */}
-             <polyline points="60,170 120,142 180,114 240,86 300,58 360,58 420,58" fill="none" stroke="#ec4899" strokeWidth="3"/>
+             <polyline points="60,160 120,134 180,108 240,82 300,56 360,56 420,56" fill="none" stroke="#ec4899" strokeWidth="2.5"/>
              
              {/* Points */}
              {[
-               [60,170], [120,142], [180,114], [240,86], [300,58], [360,58], [420,58]
+               [60,160], [120,134], [180,108], [240,82], [300,56], [360,56], [420,56]
              ].map((pt, i) => (
-               <circle key={i} cx={pt[0]} cy={pt[1]} r="5" fill="#be185d" />
+               <circle key={i} cx={pt[0]} cy={pt[1]} r="4" fill="#be185d" />
              ))}
 
              {/* X Labels */}
-             <text x="60" y="190" textAnchor="middle" fontSize="12" fill="#475569">0%</text>
-             <text x="120" y="190" textAnchor="middle" fontSize="12" fill="#475569">20%</text>
-             <text x="180" y="190" textAnchor="middle" fontSize="12" fill="#475569">40%</text>
-             <text x="240" y="190" textAnchor="middle" fontSize="12" fill="#475569">60%</text>
-             <text x="300" y="190" textAnchor="middle" fontSize="12" fill="#475569">80%</text>
-             <text x="360" y="190" textAnchor="middle" fontSize="12" fill="#475569">100%</text>
-             <text x="240" y="215" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#334155">ריכוז מיצוי תפוח אדמה</text>
+             <text x="60" y="178" textAnchor="middle" fontSize="10" fill="#475569">0%</text>
+             <text x="120" y="178" textAnchor="middle" fontSize="10" fill="#475569">20%</text>
+             <text x="180" y="178" textAnchor="middle" fontSize="10" fill="#475569">40%</text>
+             <text x="240" y="178" textAnchor="middle" fontSize="10" fill="#475569">60%</text>
+             <text x="300" y="178" textAnchor="middle" fontSize="10" fill="#475569">80%</text>
+             <text x="360" y="178" textAnchor="middle" fontSize="10" fill="#475569">100%</text>
+             <text x="240" y="195" textAnchor="middle" fontSize="11" fontWeight="bold" fill="#334155">ריכוז מיצוי תפוח אדמה</text>
 
              {/* Y Labels */}
-             <text x="45" y="174" textAnchor="end" fontSize="12" fill="#475569">0</text>
-             <text x="45" y="146" textAnchor="end" fontSize="12" fill="#475569">2</text>
-             <text x="45" y="118" textAnchor="end" fontSize="12" fill="#475569">4</text>
-             <text x="45" y="90" textAnchor="end" fontSize="12" fill="#475569">6</text>
-             <text x="45" y="62" textAnchor="end" fontSize="12" fill="#475569">8</text>
-             <text x="15" y="95" textAnchor="middle" transform="rotate(-90 15,95)" fontSize="14" fontWeight="bold" fill="#334155">גובה קצף (ס"מ)</text>
+             <text x="45" y="163" textAnchor="end" fontSize="10" fill="#475569">0</text>
+             <text x="45" y="137" textAnchor="end" fontSize="10" fill="#475569">2</text>
+             <text x="45" y="111" textAnchor="end" fontSize="10" fill="#475569">4</text>
+             <text x="45" y="85" textAnchor="end" fontSize="10" fill="#475569">6</text>
+             <text x="45" y="59" textAnchor="end" fontSize="10" fill="#475569">8</text>
+             <text x="15" y="90" textAnchor="middle" transform="rotate(-90 15,90)" fontSize="11" fontWeight="bold" fill="#334155">גובה קצף (ס"מ)</text>
           </svg>
         </div>
       </div>
@@ -332,7 +332,7 @@ const scenarios = [
   {
     id: 7,
     title: "כללים: בניית טבלאות וגרפים",
-    illustration: "📊📈",
+    illustration: "📊",
     colors: {
       border: "border-purple-500",
       bgLight: "bg-purple-50",
@@ -340,7 +340,7 @@ const scenarios = [
       bgIcon: "bg-purple-100",
       hover: "hover:border-purple-400 hover:bg-purple-50 hover:shadow-purple-200"
     },
-    studyMaterial: "מיקום המשתנים: הבלתי תלוי תמיד על ציר ה-X, והתלוי (או דרך המדידה) על ציר ה-Y. מתי בוחרים איזה גרף? אם המשתנה הבלתי תלוי הוא 'רציף' (כמו טמפרטורה, זמן, ריכוז - שיש משמעות לערך ביניים כמו 15.5 מעלות) נבחר בגרף קו רציף. אם המשתנה הוא 'בדיד / איכותי' (כמו סוג ירק, סוג דם - אין ערך ביניים בין בטטה לתירס) נבחר בגרף עמודות.",
+    studyMaterial: "מיקום המשתנים: הבלתי תלוי תמיד על ציר ה-X, והתלוי (או דרך המדידה) על ציר ה-Y. אם המשתנה הבלתי תלוי הוא 'רציף' (כמו טמפרטורה, זמן - יש משמעות לערך ביניים כמו 15.5) נבחר בגרף קו רציף. אם המשתנה 'בדיד / איכותי' (סוג ירק - אין ערך ביניים בין בטטה לתירס) נבחר בגרף עמודות.",
     description: "לאחר איסוף התוצאות מהניסויים, עלינו להציג אותן בצורה מאורגנת. על פי הכללים של פרופסור חקר, קיימים עקרונות ברורים לבניית טבלה וגרף תקינים ולבחירת סוג הגרף המתאים.",
     questions: [
       {
@@ -388,16 +388,17 @@ export default function App() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFinished, setIsFinished] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  
+  const questionAreaRef = useRef(null);
+  const descriptionAreaRef = useRef(null);
 
   const scenario = scenarios[currentScenarioIndex];
   const question = scenario?.questions[currentQuestionIndex];
   const totalQuestions = scenarios.reduce((total, sc) => total + sc.questions.length, 0);
 
-  // ספירת מספר השאלה הכללית (למד התקדמות)
   const currentGlobalQuestion = scenarios.slice(0, currentScenarioIndex).reduce((acc, curr) => acc + curr.questions.length, 0) + currentQuestionIndex + 1;
   const progressPercentage = (currentGlobalQuestion / totalQuestions) * 100;
   
-  // חישוב הציון הנוכחי מתוך 100
   const currentScore100 = Math.round((correctAnswersCount / totalQuestions) * 100);
 
   const handleStart = () => {
@@ -415,17 +416,35 @@ export default function App() {
     }
   };
 
+  const scrollToTop = () => {
+      // גלילה טבעית למעלה במסכים קטנים (מובייל)
+      if (window.innerWidth < 1024) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+          // במסכי מחשב - גלילה של כל אזור בנפרד
+          if (questionAreaRef.current) {
+              questionAreaRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+          if (descriptionAreaRef.current) {
+              descriptionAreaRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+      }
+  }
+
   const handleNext = () => {
     setSelectedOption(null);
     setShowExplanation(false);
 
     if (currentQuestionIndex < scenario.questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      scrollToTop();
     } else if (currentScenarioIndex < scenarios.length - 1) {
       setCurrentScenarioIndex(currentScenarioIndex + 1);
       setCurrentQuestionIndex(0);
+      scrollToTop();
     } else {
       setIsFinished(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -437,46 +456,47 @@ export default function App() {
     setSelectedOption(null);
     setIsFinished(false);
     setHasStarted(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // מסך פתיחה
   if (!hasStarted) {
     return (
-      <div dir="rtl" className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-4 font-sans text-slate-800">
-        <div className="max-w-2xl w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border-t-8 border-indigo-600 transform transition-all">
-          <div className="flex justify-center mb-6">
-            <div className="text-8xl filter drop-shadow-lg">
-              👨‍🔬
-            </div>
+      <div dir="rtl" className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-center justify-center p-3 sm:p-6 md:p-8 font-sans text-slate-800 overflow-hidden">
+        <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-5 sm:p-8 md:p-10 text-center border-t-8 border-indigo-600 transform transition-all flex flex-col md:flex-row items-center gap-4 md:gap-10 max-h-[95vh] overflow-y-auto">
+          <div className="flex-shrink-0 flex flex-col items-center">
+             <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl filter drop-shadow-lg mb-2 md:mb-0">
+               👨‍🔬
+             </div>
           </div>
-          <h1 className="text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow-sm">
-            פרופסור חקר
-          </h1>
-          <h2 className="text-2xl font-bold mb-8 text-slate-600">האתגר המדעי הגדול! 🧬</h2>
-          <div className="mb-10 text-lg leading-relaxed text-slate-700 bg-indigo-50/50 p-6 rounded-2xl border border-indigo-100 shadow-inner">
-            <p className="mb-2">ברוכים הבאים למעבדה הווירטואלית שלנו!</p>
-            <p>כאן נבחן את ההבנה שלכם במושגי היסוד של החקר המדעי:<br/>
-            משתנים 📊, בקרות 🧪, חזרות 🔄, בחירת גרפים 📈 ועוד.</p>
-            <p className="mt-4 font-bold text-indigo-800">מוכנים להתחיל לחקור? היעד הוא ציון 100!</p>
+          <div className="flex-grow flex flex-col items-center md:items-start text-center md:text-right">
+             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-2 sm:mb-3 md:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 drop-shadow-sm w-full">
+               פרופסור חקר
+             </h1>
+             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-slate-600 w-full">
+                האתגר המדעי הגדול! 🧬
+             </h2>
+             <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-sm sm:text-base md:text-lg lg:text-xl leading-snug sm:leading-relaxed text-slate-700 bg-indigo-50/50 p-3 sm:p-5 md:p-6 rounded-2xl border border-indigo-100 shadow-inner w-full">
+               <p className="mb-1 sm:mb-2">ברוכים הבאים למעבדה הווירטואלית שלנו!</p>
+               <p>כאן נבחן את ההבנה שלכם במושגי היסוד של החקר המדעי:<br/>
+               משתנים 📊, בקרות 🧪, חזרות 🔄, בחירת גרפים 📈 ועוד.</p>
+               <p className="mt-2 sm:mt-3 md:mt-4 font-bold text-indigo-800">מוכנים להתחיל לחקור? היעד הוא ציון 100!</p>
+             </div>
+             <button 
+               onClick={handleStart}
+               className="w-full sm:w-auto group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white transition-all duration-200 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+             >
+               <span>בואו נתחיל!</span>
+               <span className="mr-2 sm:mr-3 text-xl sm:text-2xl md:text-3xl group-hover:scale-125 transition-transform duration-200">🚀</span>
+             </button>
           </div>
-          <button 
-            onClick={handleStart}
-            className="group relative inline-flex items-center justify-center px-12 py-5 text-2xl font-bold text-white transition-all duration-200 bg-gradient-to-r from-indigo-600 to-purple-600 border border-transparent rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-          >
-            <span>בואו נתחיל!</span>
-            <span className="mr-3 text-3xl group-hover:scale-125 transition-transform duration-200">🚀</span>
-          </button>
         </div>
       </div>
     );
   }
 
-  // מסך סיום ומשוב
   if (isFinished) {
-    // הציון הסופי מחושב מתוך 100
     const finalScore = Math.round((correctAnswersCount / totalQuestions) * 100);
     
-    // פונקציה לבניית משוב מותאם אישית
     const getDetailedFeedback = () => {
       if (finalScore === 100) return "ביצוע מושלם! הפגנת הבנה מעמיקה בכל מושגי החקר - החל מזיהוי משתנים ובקרות ועד לבנייה נכונה של גרפים והסקת מסקנות. אתה מוכן לגמרי לעבודה במעבדה ולמבחן!";
       if (finalScore >= 80) return "עבודה מצוינת! שלטת ברוב המוחלט של המושגים. שים לב לפרטים הקטנים בנימוקים (כמו ההבדל בין תיאור להסבר), אבל בסך הכל הידע שלך יציב ומרשים.";
@@ -485,37 +505,37 @@ export default function App() {
     };
 
     return (
-      <div dir="rtl" className="min-h-screen bg-gradient-to-br from-green-100 via-teal-50 to-blue-100 flex items-center justify-center p-4 font-sans">
-        <div className="max-w-2xl w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 text-center border-t-8 border-teal-500">
-          <div className="flex justify-center mb-4">
-            <Trophy size={90} className={finalScore >= 80 ? "text-yellow-400 drop-shadow-md" : "text-slate-300"} />
+      <div dir="rtl" className="min-h-screen bg-gradient-to-br from-green-100 via-teal-50 to-blue-100 flex items-center justify-center p-3 sm:p-6 font-sans">
+        <div className="w-full max-w-lg sm:max-w-2xl bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-5 sm:p-8 md:p-10 text-center border-t-8 border-teal-500 max-h-[95vh] overflow-y-auto">
+          <div className="flex justify-center mb-3 sm:mb-4">
+            <Trophy size={70} className={`sm:w-[80px] sm:h-[80px] ${finalScore >= 80 ? "text-yellow-400 drop-shadow-md" : "text-slate-300"}`} />
           </div>
-          <h2 className="text-3xl font-bold mb-4 text-slate-800">סיימת את התרגול!</h2>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 md:mb-4 text-slate-800">סיימת את התרגול!</h2>
           
-          <div className="text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 drop-shadow-sm flex items-center justify-center gap-2">
+          <div className="text-5xl sm:text-6xl md:text-7xl font-black mb-4 sm:mb-5 md:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500 drop-shadow-sm flex items-center justify-center gap-1 sm:gap-2">
             <span>{finalScore}</span>
-            <span className="text-4xl text-slate-400 font-bold mt-4">/100</span>
+            <span className="text-2xl sm:text-3xl md:text-4xl text-slate-400 font-bold mt-2 sm:mt-3 md:mt-4">/100</span>
           </div>
           
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-right mb-8 shadow-inner">
-            <h3 className="font-bold text-xl mb-3 text-slate-800 flex items-center gap-2">
-              <Award className="text-teal-600" />
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 md:p-6 text-right mb-5 sm:mb-6 md:mb-8 shadow-inner">
+            <h3 className="font-bold text-base sm:text-lg md:text-xl mb-2 sm:mb-3 text-slate-800 flex items-center gap-1.5 sm:gap-2">
+              <Award className="text-teal-600 shrink-0 w-5 h-5 sm:w-6 sm:h-6" />
               המשוב האישי שלך:
             </h3>
-            <p className="text-lg text-slate-700 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-snug sm:leading-relaxed">
               {getDetailedFeedback()}
             </p>
-            <div className="mt-4 pt-4 border-t border-slate-200 flex justify-between items-center text-slate-600 font-medium">
+            <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-slate-200 flex flex-row justify-between items-center text-slate-600 font-medium text-xs sm:text-sm md:text-base">
               <span>סך הכל שאלות: {totalQuestions}</span>
-              <span>תשובות נכונות: <span className="font-bold text-teal-600 text-xl">{correctAnswersCount}</span></span>
+              <span>תשובות נכונות: <span className="font-bold text-teal-600 text-base sm:text-lg md:text-xl">{correctAnswersCount}</span></span>
             </div>
           </div>
 
           <button 
             onClick={handleRestart}
-            className="flex items-center justify-center gap-3 w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-5 px-6 rounded-2xl text-xl transition-all hover:shadow-lg hover:-translate-y-1"
+            className="flex items-center justify-center gap-2 sm:gap-3 w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 sm:py-4 md:py-5 px-4 sm:px-6 rounded-2xl text-base sm:text-lg md:text-xl transition-all hover:shadow-lg hover:-translate-y-1"
           >
-            <RotateCcw size={24} />
+            <RotateCcw size={18} className="sm:w-[20px] sm:h-[20px] md:w-[24px] md:h-[24px]" />
             תרגול מחדש
           </button>
         </div>
@@ -525,128 +545,141 @@ export default function App() {
 
   // מסך שאלה
   return (
-    <div dir="rtl" className="min-h-screen bg-slate-50 flex flex-col items-center py-8 px-4 font-sans transition-colors duration-500">
-      <div className="max-w-4xl w-full">
+    <div dir="rtl" className="min-h-[100dvh] lg:h-[100dvh] bg-slate-50 flex flex-col items-center p-2 sm:p-4 font-sans transition-colors duration-500 lg:overflow-hidden">
+      <div className="w-full max-w-7xl flex-grow lg:h-full flex flex-col">
         
-        {/* מד התקדמות */}
-        <div className="w-full bg-slate-200 rounded-full h-3 mb-8 shadow-inner overflow-hidden flex-row-reverse">
+        {/* מד התקדמות (קומפקטי יותר) */}
+        <div className="w-full bg-slate-200 rounded-full h-1.5 sm:h-2 mb-2 sm:mb-4 shadow-inner overflow-hidden flex-row-reverse shrink-0">
           <div 
-            className="bg-gradient-to-l from-blue-600 to-indigo-500 h-3 rounded-full transition-all duration-500 ease-out" 
+            className="bg-gradient-to-l from-blue-600 to-indigo-500 h-full rounded-full transition-all duration-500 ease-out" 
             style={{ width: `${progressPercentage}%` }}
           ></div>
         </div>
 
-        {/* האדר עליון - הצגת הציון הנוכחי מתוך 100 */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 bg-white p-5 rounded-2xl shadow-sm border border-slate-100 gap-4">
-          <div className="flex items-center gap-3 text-slate-700 font-bold text-lg w-full sm:w-auto">
-            <div className={`p-2 rounded-xl ${scenario.colors.bgIcon}`}>
-              <BookOpen size={24} className={scenario.colors.text} />
+        {/* האדר עליון (קומפקטי) */}
+        <div className="flex flex-row justify-between items-center mb-3 sm:mb-4 bg-white p-2 sm:p-3 rounded-xl sm:rounded-2xl shadow-sm border border-slate-100 gap-2 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 text-slate-700 font-bold text-sm sm:text-base md:text-lg flex-grow min-w-0">
+            <div className={`p-1 sm:p-1.5 rounded-lg shrink-0 hidden sm:block ${scenario.colors.bgIcon}`}>
+              <BookOpen size={16} className={`sm:w-[20px] sm:h-[20px] ${scenario.colors.text}`} />
             </div>
-            <span>תרחיש {currentScenarioIndex + 1} מתוך {scenarios.length}</span>
+            <span className="truncate">תרחיש {currentScenarioIndex + 1} מתוך {scenarios.length}</span>
           </div>
           
-          <div className="text-slate-700 w-full sm:w-auto justify-center font-medium bg-amber-50 border border-amber-200 py-2 px-5 rounded-full text-lg shadow-sm flex items-center gap-2">
-            <Star className="text-amber-500 fill-amber-500 drop-shadow-sm" size={22} />
-            <span>ציון ביניים: <span className="font-bold text-slate-900 ml-1">{currentScore100} / 100</span></span>
+          <div className="text-slate-700 font-medium bg-amber-50 border border-amber-200 py-1 sm:py-1.5 px-2 sm:px-3 rounded-full text-xs sm:text-sm md:text-base shadow-sm flex items-center gap-1 sm:gap-1.5 shrink-0">
+            <Star className="text-amber-500 fill-amber-500 drop-shadow-sm w-3 h-3 sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
+            <span className="whitespace-nowrap">ציון: <span className="font-bold text-slate-900 ml-0.5">{currentScore100}</span><span className="hidden sm:inline"> / 100</span></span>
           </div>
         </div>
 
-        {/* חומר עזר - הפינה של פרופסור חקר */}
-        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-3xl shadow-sm p-6 mb-6 border border-indigo-100 relative overflow-hidden">
-          <div className="absolute -left-4 -top-4 text-7xl opacity-10">👨‍🏫</div>
-          <div className="flex items-start gap-4 relative z-10">
-            <div className="bg-indigo-100 p-3 rounded-full shrink-0 text-indigo-600">
-              <BrainCircuit size={28} />
-            </div>
-            <div>
-              <h3 className="font-bold text-xl text-indigo-900 mb-2">פינת הלמידה של פרופסור חקר</h3>
-              <p className="text-indigo-800/90 text-lg leading-relaxed">
-                {scenario.studyMaterial}
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* אזור התוכן המרכזי - שתי עמודות במסכים גדולים */}
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 flex-grow lg:h-full lg:min-h-0">
+          
+          {/* עמודה ימנית: תיאור ומידע (במובייל זורם למטה בטבעיות) */}
+          <div 
+            ref={descriptionAreaRef}
+            className="w-full lg:w-5/12 xl:w-1/2 flex flex-col gap-3 sm:gap-4 shrink-0 lg:shrink lg:h-full lg:overflow-y-auto lg:pr-1 pb-4 lg:pb-0"
+          >
+             {/* פינת הלמידה */}
+             <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl sm:rounded-2xl shadow-sm p-3 sm:p-4 border border-indigo-100 relative overflow-hidden shrink-0">
+               <div className="absolute -left-2 -top-2 text-4xl sm:text-5xl opacity-10">👨‍🏫</div>
+               <div className="flex items-start gap-2 sm:gap-3 relative z-10">
+                 <div className="bg-indigo-100 p-1.5 sm:p-2 rounded-full shrink-0 text-indigo-600 hidden sm:block">
+                   <BrainCircuit size={18} className="sm:w-[20px] sm:h-[20px]" />
+                 </div>
+                 <div>
+                   <h3 className="font-bold text-sm sm:text-base text-indigo-900 mb-0.5 sm:mb-1">פינת הלמידה של פרופסור חקר</h3>
+                   <p className="text-indigo-800/90 text-xs sm:text-sm md:text-base leading-snug sm:leading-relaxed">
+                     {scenario.studyMaterial}
+                   </p>
+                 </div>
+               </div>
+             </div>
 
-        {/* כרטיס תרחיש עם איור */}
-        <div className={`bg-white rounded-3xl shadow-lg p-8 mb-8 border border-slate-100 border-r-8 ${scenario.colors.border} relative overflow-hidden transition-all duration-300`}>
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <div className={`text-6xl p-4 rounded-2xl ${scenario.colors.bgIcon} shadow-inner shrink-0 hidden md:block`}>
-              {scenario.illustration}
-            </div>
-            <div className="w-full">
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`text-5xl md:hidden`}>{scenario.illustration}</div>
-                <h2 className="text-3xl font-bold text-slate-800">{scenario.title}</h2>
-              </div>
-              <p className="text-slate-700 text-xl leading-relaxed">{scenario.description}</p>
-              {scenario.extraContent && scenario.extraContent()}
-            </div>
-          </div>
-        </div>
-
-        {/* אזור השאלה */}
-        <div className="bg-white rounded-3xl shadow-md p-8 border border-slate-100 mb-10">
-          <div className="mb-8">
-            <span className={`inline-block py-1 px-3 rounded-lg text-sm font-bold uppercase tracking-wider mb-4 ${scenario.colors.bgLight} ${scenario.colors.text}`}>
-              שאלה {currentQuestionIndex + 1} מתוך {scenario.questions.length}
-            </span>
-            <h3 className="text-2xl font-bold text-slate-900 leading-snug">{question.question}</h3>
+             {/* כרטיס תיאור הניסוי */}
+             <div className={`bg-white rounded-xl sm:rounded-2xl shadow-sm p-3 sm:p-4 md:p-5 border border-slate-100 border-r-4 ${scenario.colors.border} relative flex-grow flex flex-col`}>
+               <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                 <div className={`text-2xl sm:text-3xl md:text-4xl p-1.5 sm:p-2 rounded-lg sm:rounded-xl ${scenario.colors.bgIcon} shadow-inner shrink-0`}>
+                   {scenario.illustration}
+                 </div>
+                 <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 leading-tight">{scenario.title}</h2>
+               </div>
+               <div className="text-slate-700 text-sm sm:text-base md:text-lg leading-snug sm:leading-relaxed flex-grow">
+                 <p>{scenario.description}</p>
+                 {scenario.extraContent && scenario.extraContent()}
+               </div>
+             </div>
           </div>
 
-          <div className="space-y-4">
-            {question.options.map((option, index) => {
-              let buttonStyle = `border-slate-200 text-slate-700 bg-white shadow-sm ${scenario.colors.hover}`;
-              let Icon = null;
-
-              if (showExplanation) {
-                if (index === question.correct) {
-                  buttonStyle = "border-emerald-500 bg-emerald-50 text-emerald-900 shadow-md scale-[1.02]";
-                  Icon = <CheckCircle className="text-emerald-500 mr-3 shrink-0" size={28} />;
-                } else if (index === selectedOption) {
-                  buttonStyle = "border-rose-400 bg-rose-50 text-rose-900 scale-95 opacity-80";
-                  Icon = <XCircle className="text-rose-500 mr-3 shrink-0" size={28} />;
-                } else {
-                  buttonStyle = "border-slate-200 opacity-40 bg-slate-50 text-slate-500";
-                }
-              }
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerClick(index)}
-                  disabled={showExplanation}
-                  className={`w-full text-right p-5 rounded-2xl border-2 transition-all duration-300 ease-in-out flex items-center justify-between text-xl ${buttonStyle} ${!showExplanation ? 'hover:-translate-y-1' : ''}`}
-                >
-                  <span className="leading-relaxed">{option}</span>
-                  {Icon}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* תיבת הסבר לאחר מענה */}
-          {showExplanation && (
-            <div className={`mt-8 p-6 rounded-2xl flex flex-col gap-5 border shadow-inner animate-in fade-in slide-in-from-top-4 duration-500 ${selectedOption === question.correct ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-orange-50 border-orange-200 text-orange-900'}`}>
-              <div className="flex items-start gap-4">
-                <div className={`mt-1 p-2 rounded-full shrink-0 ${selectedOption === question.correct ? 'bg-emerald-100' : 'bg-orange-100'}`}>
-                  <Lightbulb size={28} className={selectedOption === question.correct ? 'text-emerald-600' : 'text-orange-500'} />
+          {/* עמודה שמאלית: שאלות (במובייל זורם מתחת, זמין לגלילה טבעית) */}
+          <div className="w-full lg:w-7/12 xl:w-1/2 bg-white rounded-xl sm:rounded-2xl shadow-md border border-slate-100 flex flex-col lg:h-full lg:min-h-0 overflow-hidden mb-6 lg:mb-0">
+            <div 
+                ref={questionAreaRef}
+                className="p-3 sm:p-5 md:p-6 lg:overflow-y-auto flex-grow custom-scrollbar"
+                style={{ scrollbarWidth: 'thin' }}
+            >
+                <div className="mb-3 sm:mb-4 md:mb-6">
+                  <span className={`inline-block py-0.5 sm:py-1 px-1.5 sm:px-2 rounded-md text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1.5 sm:mb-2 ${scenario.colors.bgLight} ${scenario.colors.text}`}>
+                    שאלה {currentQuestionIndex + 1} מתוך {scenario.questions.length}
+                  </span>
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 leading-snug">{question.question}</h3>
                 </div>
-                <div>
-                  <h4 className="font-black text-xl mb-2">
-                    {selectedOption === question.correct ? 'כל הכבוד! התשובה נכונה. 🎉' : 'טעות, לא נורא. בואו נלמד מזה! 🧠'}
-                  </h4>
-                  <p className="text-xl leading-relaxed opacity-90 font-medium">{question.explanation}</p>
+
+                <div className="space-y-2 sm:space-y-3">
+                  {question.options.map((option, index) => {
+                    let buttonStyle = `border-slate-200 text-slate-700 bg-white shadow-sm ${scenario.colors.hover}`;
+                    let Icon = null;
+
+                    if (showExplanation) {
+                      if (index === question.correct) {
+                        buttonStyle = "border-emerald-500 bg-emerald-50 text-emerald-900 shadow-md z-10 relative";
+                        Icon = <CheckCircle className="text-emerald-500 mr-2 shrink-0 w-4 h-4 sm:w-5 sm:h-5 md:w-[22px] md:h-[22px]" />;
+                      } else if (index === selectedOption) {
+                        buttonStyle = "border-rose-400 bg-rose-50 text-rose-900 opacity-90";
+                        Icon = <XCircle className="text-rose-500 mr-2 shrink-0 w-4 h-4 sm:w-5 sm:h-5 md:w-[22px] md:h-[22px]" />;
+                      } else {
+                        buttonStyle = "border-slate-200 opacity-50 bg-slate-50 text-slate-400";
+                      }
+                    }
+
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handleAnswerClick(index)}
+                        disabled={showExplanation}
+                        className={`w-full text-right p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl border-2 transition-all duration-200 ease-in-out flex items-center justify-between text-xs sm:text-sm md:text-base lg:text-lg ${buttonStyle} ${!showExplanation ? 'hover:bg-slate-50' : ''}`}
+                      >
+                        <span className="leading-snug sm:leading-relaxed pr-1">{option}</span>
+                        {Icon}
+                      </button>
+                    );
+                  })}
                 </div>
-              </div>
-              <button 
-                onClick={handleNext}
-                className="self-end flex items-center gap-3 bg-slate-800 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-900 hover:shadow-lg transition-all hover:-translate-y-1"
-              >
-                {currentQuestionIndex < scenario.questions.length - 1 || currentScenarioIndex < scenarios.length - 1 ? 'המשך לשאלה הבאה' : 'למסך הסיום'}
-                <ArrowLeft size={22} />
-              </button>
+
+                {/* תיבת הסבר לאחר מענה */}
+                {showExplanation && (
+                  <div className={`mt-4 sm:mt-5 md:mt-6 p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl flex flex-col gap-2 sm:gap-3 border shadow-inner animate-in fade-in slide-in-from-top-2 duration-300 ${selectedOption === question.correct ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-orange-50 border-orange-200 text-orange-900'}`}>
+                    <div className="flex items-start gap-2 sm:gap-3">
+                      <div className={`mt-0.5 p-1 sm:p-1.5 rounded-full shrink-0 hidden sm:block ${selectedOption === question.correct ? 'bg-emerald-100' : 'bg-orange-100'}`}>
+                        <Lightbulb size={16} className={`sm:w-[20px] sm:h-[20px] ${selectedOption === question.correct ? 'text-emerald-600' : 'text-orange-500'}`} />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-sm sm:text-base md:text-lg mb-0.5 sm:mb-1">
+                          {selectedOption === question.correct ? 'כל הכבוד! התשובה נכונה. 🎉' : 'טעות, לא נורא. בואו נלמד מזה! 🧠'}
+                        </h4>
+                        <p className="text-xs sm:text-sm md:text-base leading-snug sm:leading-relaxed opacity-90 font-medium">{question.explanation}</p>
+                      </div>
+                    </div>
+                    <button 
+                      onClick={handleNext}
+                      className="self-end flex items-center justify-center gap-1.5 sm:gap-2 w-full sm:w-auto bg-slate-800 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base hover:bg-slate-900 hover:shadow-md transition-all mt-1 sm:mt-2"
+                    >
+                      {currentQuestionIndex < scenario.questions.length - 1 || currentScenarioIndex < scenarios.length - 1 ? 'לשאלה הבאה' : 'למסך הסיום'}
+                      <ArrowLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
+                    </button>
+                  </div>
+                )}
             </div>
-          )}
+          </div>
         </div>
 
       </div>
